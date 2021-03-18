@@ -1,5 +1,5 @@
 <template>
-    <div class="mt-6">
+    <div >
         <v-divider class = "mx-5"></v-divider>
         <v-chip-group 
         class = "mx-5" 

@@ -24,7 +24,8 @@
                         allow="accelerometer; 
                         autoplay; clipboard-write; encrypted-media; 
                         gyroscope; picture-in-picture" 
-                        allowfullscreen></iframe>
+                        allowfullscreen>
+                    </iframe>
                 </v-card>
             
             </v-col>

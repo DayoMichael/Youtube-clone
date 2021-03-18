@@ -49,7 +49,7 @@
                 
                 <v-card-text  >
                     <v-row class="pr-0" >
-                        <div class="font-weight-bold-inline-block text-truncate link "  contain><v-btn plain class = "px-0">{{video.title}}</v-btn></div>
+                        <div class="font-weight-bold d-inline-block text-truncate link "  contain><v-btn plain class = "px-0">{{video.title}}</v-btn></div>
                     </v-row >
                     <v-row>
                         <div class="font-weight-light text-left pl-0 d-inline-block text-truncate"><v-btn plain class="pl-0">{{video.channelname}}</v-btn></div>

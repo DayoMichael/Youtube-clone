@@ -1,5 +1,5 @@
 <template>
- <div>
+ <div class="mt-6">
    <Chips/>
    <Thumbnail />
  </div>

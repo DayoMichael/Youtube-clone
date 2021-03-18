@@ -20,12 +20,7 @@ export default new Vuetify({
                 subtitle: '#909090',
                 primaryDarker: '#121212'
             },
-            light: {
-                primaryDark: '#040404',
-                secondaryDark: '#0c0c0c',
-                tertiaryDark: '#121212',
-                primaryGray: '#202020'
-            }
+            
         }
     }
 });
