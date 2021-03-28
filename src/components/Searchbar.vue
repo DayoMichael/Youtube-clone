@@ -1,16 +1,19 @@
 <template>
-<v-row class="mt-4">
+<v-row class="mt-4"
+:x-small="$vuetify.breakpoint.smAndDown"
+>
     <v-col class= "d-flex flex-nowrap"
+    
     style="size:0.6em">
 
     
     <v-text-field class="input-search"
-
+        
         placeholder="Search"
         solo
         dense
         height ="0.2em"
-        style="font-size:0.6em"
+        style="font-size:0.9em"
         v-model="search"
         background-color="primaryDarker"
     >

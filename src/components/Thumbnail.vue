@@ -1,5 +1,5 @@
 <template>
-    <div class = "ml-10 ">
+    <div class = "mx-4">
         <v-row  >
             
 
@@ -8,10 +8,11 @@
                 
                 v-for= "(video, index) in allVideos"
                 :key = "index"
-                xs6 
+                cols = "6"
                 md='3' 
                 lg='2.5' 
                 xl = '2'
+                class = "flex-grow-0 flex-shrink-0 pb-0"
                 sm3 >
                     <v-sheet
                     color="grey darken-4"
@@ -35,6 +36,7 @@
                 >
                 <v-responsive>
                     <iframe 
+                        width= 100%
                         :src="video.link"
                         frameborder="0" 
                         allow="accelerometer; 
@@ -48,8 +50,8 @@
                 
                 
                 <v-card-text  >
-                    <v-row class="pr-0" >
-                        <div class="font-weight-bold d-inline-block text-truncate link "  contain><v-btn plain class = "px-0">{{video.title}}</v-btn></div>
+                    <v-row class="pr-0 text--white" >
+                        <div class="font-weight-bold d-inline-block text-truncate link text-grey lighten-5"  contain role= 'link' @click = "handleSelectItem(video)"><v-btn plain class = "px-0 ">{{video.title}}</v-btn></div>
                     </v-row >
                     <v-row>
                         <div class="font-weight-light text-left pl-0 d-inline-block text-truncate"><v-btn plain class="pl-0">{{video.channelname}}</v-btn></div>
@@ -92,12 +94,13 @@ export default {
     methods: {
         setLoadingState(value) {
             this.loading = value
-        }
+        },
+        handleSelectItem(value) {
+            console.log(value.id);
+            this.$router.push({ path: `/watch/${value.id}`})
+            // you can also handle toggle action here manually to open and close dropdown
+        },
     },
-    inject: {
-      theme: {
-        default: { isDark: false },
-      },
-    },
+    
 }
 </script>

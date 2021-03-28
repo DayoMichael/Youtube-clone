@@ -1,41 +1,39 @@
 
 <template>
-  <div>
+
     <v-app-bar
-      class = "justify-space-between"
-      cols="12"
-      
+      class = "justify-space-between "
+      app
       color="primary"  dense dark fixed flat
       height = "56"
-      width = "100vw" clipped-left app
+      width = "100vw" clipped-left 
     >
-      <v-app-bar-nav-icon @click = "onClick"></v-app-bar-nav-icon>
-      <v-col cols="2" md="2" :small="$vuetify.breakpoint.smAndDown">
-        <v-btn plain style="font-size:0.5em" :small="$vuetify.breakpoint.smAndDown" class= "ml-md-15 ml-2" icon>
+      <v-app-bar-nav-icon class="mr-2 text--white" @click = "onClick" :x-small="$vuetify.breakpoint.smAndDown" ></v-app-bar-nav-icon>
+      <v-col cols=""  >
+        <v-btn plain  :x-small="$vuetify.breakpoint.smAndDown" class= "ml-md-15 ml-4 mr-2  text-no-wrap text--white" icon>
         
           <v-icon color= "red">
             mdi-youtube
           </v-icon>
-          Youtube
+        <span class= "text--white">YouTube</span>
         </v-btn>
       
       
       </v-col>
 
       <v-spacer></v-spacer>
-      <v-col cols="5" md="8" class= "d-flex flex-nowrap">
+      <v-col cols="6" md="5" xs="6"  class= " d-flex flex-nowrap ml-2 ml-md-0 d-flex flex-nowrap">
         <Searchbar/>
       </v-col>
       
-       
       <v-spacer></v-spacer>
-      <v-col class= "d-flex flex-nowrap mr-xs-n10"  cols="4" xl="4">
+      <v-col class= "d-flex justify-end flex-nowrap mr mr-md-n8" :small="$vuetify.breakpoint.smAndDown" cols="2" xl="2">
         <v-menu
         transition="slide-y-transition"
         bottom
         offset-y
         
-        >
+      >
           <template v-slot:activator="{ on,attrs }">
             <v-btn
             v-on = "on" 
@@ -145,14 +143,15 @@
       <v-btn 
       icon 
       :x-small="$vuetify.breakpoint.smAndDown" 
-      class= "ml-2"
-    
+      class= "ml-2 d-none d-sm-flex"
+      v-show="$vuetify.breakpoint.md"
       >
         <v-icon>mdi-dots-grid</v-icon>
       </v-btn>
 
 
-      <v-btn icon :x-small="$vuetify.breakpoint.smAndDown" class= "ml-2">
+      <v-btn 
+      icon :x-small="$vuetify.breakpoint.smAndDown" class= "ml-2 d-none d-sm-flex">
         <v-icon>mdi-bell</v-icon>
       </v-btn>
             
@@ -166,34 +165,24 @@
             </v-avatar>
           </v-btn>
         </template>
-
-        <v-list>
-          
-          <v-list-item>
-            <v-btn @click = "register">
-              Sign in with Google
-
-            </v-btn>
-          </v-list-item>
-        </v-list>
       </v-menu>
-      
-  
-      <v-menu
-        left
-        bottom
-      >
-      
-
-      </v-menu>
-      
-      
       </v-col>
     </v-app-bar>
-  </div>
+
 </template>
 
 <script  >
+
+/* 
+<v-list>         
+  <v-list-item>
+    <v-btn @click = "register">
+      Sign in with Google
+
+    </v-btn>
+  </v-list-item>
+</v-list>
+  */
 
 import { mapState, mapGetters, mapActions } from "vuex";
 import Searchbar from "@/components/Searchbar.vue";
@@ -227,7 +216,7 @@ export default {
       showDrawer: (state) => state.showDrawer,
       videoIsPlaying: (state) => state.videoIsPlaying,
     }),
-    ...mapGetters(["allVideos"]),
+    ...mapGetters(["allVideos", "drawerstate"]),
   },
   methods: {
      onSignInSuccess (googleUser) {
@@ -260,13 +249,10 @@ export default {
     },
 
     onClick() {
-      console.log("menu clicked");
-      if (this.videoIsPlaying) {
-        this.$store.commit("toggleShowDrawer", !this.showDrawer);
-      } else {
-        this.$store.commit("toggleShowFullDrawer", !this.showFullDrawer);
-        console.log("showfulldrawer");
-      }
+      this.$store.commit('toggleShowDrawer',!this.drawerstate)
+      console.log(this.drawerstate)
+        
+      
     },
 
     ...mapActions(["addVideo"]),

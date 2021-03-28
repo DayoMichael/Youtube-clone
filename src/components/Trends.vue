@@ -1,7 +1,7 @@
 <template>
-    <v-container class= "pt-14">
+    <v-container class= "">
         <v-row 
-        class= "pt-4"
+        class= "pt-4 d-flex   flex-md-nowrap  flex-sm-wrap"
         v-for= "(video, index) in allVideos"
         :key = "index"
         
@@ -9,16 +9,35 @@
 
         >
             <v-col
-              cols ="3.5"
-              class = "flex-grow-0 flex-shrink-0"
+              lg = "4"
+              md ="3.5"
+              cols ="5"
+              class = "flex-grow-0 flex-shrink-0 pb-0"
+              style="max-height: 50%;"
             >
 
                 <v-card
+                
                 outlined
                 tile
                 color ="transparent"
                 >
                     <iframe 
+                        
+                        :height ="$vuetify.breakpoint.xs 
+                                ? '100px' 
+                                : ($vuetify.breakpoint.sm
+                                    ? '150px' 
+                                    : ($vuetify.breakpoint.md
+                                        ? '150px'
+                                        : ($vuetify.breakpoint.lg
+                                            ? '200px' 
+                                            : '200px'
+                                        )
+                                    )
+                                )"
+                        width = 100%
+                        
                         :src="video.link"
                         frameborder="0" 
                         allow="accelerometer; 
@@ -31,7 +50,10 @@
             </v-col>
 
             <v-col
-                cols="6"
+                class= " pb-0"
+                lg = "6"
+                md = "6"
+                cols="10"
                 style="min-width: 50px; max-width: 50%;"
                 
             >
@@ -42,25 +64,27 @@
                     color= 'transparent'
                     
                 >
-                <div class='d-block mb-0 pb-0'>
-                    <div plain class="pl-0  text-subtitle font-weight-normal " style="cursor: pointer;" role= 'link' @click = "handleSelectItem(video)">{{video.title}}</div>
+               
+                <div plain class="pl-0 d-block mb-0 pb-0  text-subtitle-2 d-inline-block text-truncate 
+                text-md-h6 font-weight-normal flex-md-nowrap  text-no-wrap" style="cursor: pointer;" role= 'link' @click = "handleSelectItem(video)">{{video.title}}</div>
+        
+                
+                <div class = 'd-block pt-0 mt-4 mb-0 pb-0'>
+                    <div plain class="pl-0 text-caption  text-capitalize grey--text" role= 'link' >{{video.channelname}} </div>
+                    <div plain class="pl-0 text-caption  text-capitalize grey--text" role= 'link' >{{video.views}} views ● {{video.date}}</div>
                     
-                    
-
                 </div>
-                <div class = 'd-block pt-0 mt-0'>
-                    <v-btn plain class="pl-0 text-caption text-capitalize" >{{video.channelname}} --- {{video.views}} views ● {{video.date}}</v-btn>
-                    
-                </div>
-                <div class = 'd-block text-caption grey--text'>
+        
+                <div class = 'd-block text-caption d-inline-block text-truncate grey--text'>
                         {{video.description}}
                 </div>
                 </v-card>
             </v-col> 
-
+            
         
         
         </v-row>
+        
         
         
     </v-container>
@@ -76,13 +100,25 @@ export default {
                 
 
             ],
+            height: 200
+            
+            
+            
+           
         }
     },
-    computed: mapGetters(['allVideos']),
+    computed:{ 
+        ...mapGetters(['allVideos']),
+       
+        
+       
+        
+    },
     mounted(){
         this.allVideos.sort(function(a,b){
             
             return b.views - a.views
+            
         }),
         this.allVideos.forEach(function abbreviateNumber(item){
             let o = Intl.NumberFormat('en', { notation: 'compact' });
@@ -90,10 +126,12 @@ export default {
             item.views = o.format(item.views)
         }),
         this.allVideos.forEach(function(item) {
+            
             item.date = moment(item.date, "DDMMYYYY").fromNow()
             
         })
         
+    
         
         
     },
@@ -105,7 +143,18 @@ export default {
     },
         saysomething: function () {
             console.log('hiiii')
-        }
+        },
+
+       
+
+        
+        
+        
+        
+    },
+    watch: {
+        
+
     }
 
 }

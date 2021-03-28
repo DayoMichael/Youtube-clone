@@ -1,17 +1,21 @@
 const state = {
     showDrawer: false,
-    showFullDrawer: false,
-    videoIsPlaying: false
 };
 
-const getters = {};
+const getters = {
+    drawerstate: (state) =>state.showDrawer
+};
 
-const actions = {};
+const actions = {
+    adjustDrawer({commit}, drawer) {
+        commit('newDrawerstate', drawer)
+    }
+};
 
 const mutations = {
-    toggleShowFullDrawer: (state, value) => (state.showFullDrawer = value),
+    
     toggleShowDrawer: (state, value) => (state.showDrawer = value),
-    toggleVideoPlaying: (state, value) => (state.videoIsPlaying = value)
+
 };
 
 export default {

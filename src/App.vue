@@ -3,7 +3,7 @@
     <Navbar/>
     <Sidebar/>
 
-    <v-main>
+    <v-main class= "pl-18">
       <router-view></router-view>
     </v-main>
   </v-app>

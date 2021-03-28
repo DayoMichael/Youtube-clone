@@ -1,17 +1,18 @@
 <template>
-    <v-container class= "pt-14 ml-0 ml-md-8">
+    <v-container class= "pt-4 ml-0 ml-md-8 ">
         <v-row 
-        class= "pt-4 d-flex  flex-md-nowrap  flex-sm-wrap "
+        class= "pt-4 d-flex  flex-md-nowrap flex-sm-wrap "
         style=""
 
         >
             <v-col
             xl= "9"
-            lg ="9"
+            lg ="8"
             md= "8"
             sm= "11"
             cols = "12"
-            class = "flex-grow-0 flex-shrink-0"
+            class = "flex-grow-0 flex-shrink-1"
+            
             >
 
                 <v-card
@@ -47,8 +48,11 @@
                     <div class = 'd-flex  justify-space-between pt-0 mt-0'>
                         
                         
-                        <div class = '  d-inline  text-caption text-capitalize mt-2'>
-                            {{video.views}} views  ●  premiered - {{video.date}} 
+                        <div class = '  d-inline  text-caption '>
+                            {{video.views}} views
+                            <div class = '  d-block text-caption '>
+                            Premiered - {{video.date}} 
+                            </div>
                         </div>
                        
                         <div class = 'd-inline d-flex flex-xs-nowrap' >
@@ -90,7 +94,7 @@
                             :x-small="$vuetify.breakpoint.smAndDown"
                             >
                                 <v-icon >mdi-playlist-plus</v-icon>
-                                Share
+                                Save
                             </v-btn>
                             
                         </div>
@@ -224,7 +228,7 @@
                         </v-col >
                         <v-col cols= "9" 
                         style="font-size:0.8em"
-                        class = "flex-grow-0 flex-shrink-0 mt-5"
+                        class = "flex-grow-0 flex-shrink-0 mt-5 ml-2"
                         >
                             <div class ="d-block" style="font-size:1.0em" >
                                 {{comment.name.toUpperCase()}}
@@ -268,7 +272,7 @@
             <v-col  
             lg= "4"
             xl = "4"
-            md= "4" 
+            md= "5" 
             sm= "11"
             xs = "11"
             class ="mt-0 pt-0 ml-md-2 ml-0"
@@ -405,7 +409,7 @@ export default {
         },
         submitComment(){
             this.time = moment()
-            this.comments.unshift({name:"user 1", comment: this.usercomment, time: moment(this.time, "DDMMYYYY").fromNow(), likes: 41, dislikes: 10})
+            this.comments.unshift({name:"user 1", comment: this.usercomment, time: moment(this.time, "DDMMYYYY").fromNow(), likes: '', dislikes: ''})
             console.log(this.usercomment, this.comments)
             this.usercomment = ""
         },
@@ -421,7 +425,17 @@ export default {
             console.log(videos.id)
             return videos.id == this.id
         })
-        this.video.views= ++this.video.views
+        this.allVideos.forEach(function abbreviateNumber(item){
+            let o = Intl.NumberFormat('en', { notation: 'compact' });
+            
+            item.views = o.format(item.views)
+        }),
+        this.allVideos.forEach(function(item) {
+            
+            item.date = moment(item.date, "DDMMYYYY").fromNow()
+            
+        })
+        
         console.log('the video', this.video.likes)
     }
     
