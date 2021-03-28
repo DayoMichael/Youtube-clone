@@ -21,8 +21,8 @@
     <v-btn :icon ="$vuetify.breakpoint.smAndDown" :x-small="$vuetify.breakpoint.smAndDown" depressed height= "40" class="btn-search" @click = "searchItem">
         <v-icon> mdi-magnify</v-icon>
     </v-btn>
-    <v-btn icon :x-small="$vuetify.breakpoint.smAndDown" height= "40">
-        <v-icon>mdi-microphone</v-icon>
+    <v-btn  icon :x-small="$vuetify.breakpoint.smAndDown" height= "40">
+        <v-icon v-show="$vuetify.breakpoint.mdAndUp">mdi-microphone</v-icon>
     </v-btn>
     </v-col>
 

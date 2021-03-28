@@ -1,4 +1,4 @@
-<template>
+<template  >
  <div class="mt-6">
    <Chips/>
    <Thumbnail />

@@ -10,7 +10,7 @@
     >
       <v-app-bar-nav-icon class="mr-2 text--white" @click = "onClick" :x-small="$vuetify.breakpoint.smAndDown" ></v-app-bar-nav-icon>
       <v-col cols=""  >
-        <v-btn plain  :x-small="$vuetify.breakpoint.smAndDown" class= "ml-md-15 ml-4 mr-2  text-no-wrap text--white" icon>
+        <v-btn plain  :x-small="$vuetify.breakpoint.smAndDown" class= "ml-md-15 ml-4 mr-2  text-no-wrap text--white" icon  @click = "home">
         
           <v-icon color= "red">
             mdi-youtube
@@ -27,7 +27,7 @@
       </v-col>
       
       <v-spacer></v-spacer>
-      <v-col class= "d-flex justify-end flex-nowrap mr mr-md-n8" :small="$vuetify.breakpoint.smAndDown" cols="2" xl="2">
+      <v-col class= "d-flex justify-end flex-nowrap px-0 mr-md-n8" :small="$vuetify.breakpoint.smAndDown" cols="2" xl="2">
         <v-menu
         transition="slide-y-transition"
         bottom
@@ -157,11 +157,12 @@
             
       <v-menu offset-y>
         <template v-slot:activator="{ on, attrs }">
-          <v-btn icon :x-small="$vuetify.breakpoint.smAndDown" 
+          <v-btn icon 
+          :x-small="$vuetify.breakpoint.smAndDown" 
           v-bind="attrs"
           v-on="on" class="ml-2">
-            <v-avatar size="32px">
-              <img src="https://cdn.vuetifyjs.com/images/john.jpg" alt="John" />
+            <v-avatar size="28" >
+              <img src="https://cdn.vuetifyjs.com/images/john.jpg" alt="John"  />
             </v-avatar>
           </v-btn>
         </template>
@@ -246,6 +247,9 @@ export default {
           console.log(err); // This will give you all the information needed to further debug any errors
         });
 
+    },
+    home() {
+      this.$router.push({ path: `/`})
     },
 
     onClick() {

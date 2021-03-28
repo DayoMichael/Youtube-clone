@@ -1,12 +1,11 @@
 <template>
  <v-navigation-drawer class ="scroller" 
  app
- dense 
  :mini-variant.sync = "drawerstate"
  dark
  :permanent = $vuetify.breakpoint.smAndUp
  clipped
- 
+ hide-overlay
  v-model="drawerstate"
 
  :width= "$vuetify.breakpoint.xs 
@@ -27,9 +26,9 @@
             )"
  color= "primary"
  :mini-variant-width= "$vuetify.breakpoint.xs 
-            ? '8%' 
+            ? '18%' 
             : ($vuetify.breakpoint.sm
-                ? '5%' 
+                ? '15%' 
                 : ($vuetify.breakpoint.md
                     ? '7%'
                     : ($vuetify.breakpoint.lg
